@@ -1,0 +1,482 @@
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: sans-serif
+}
+
+*, *::before, *::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit
+}
+
+.container {
+  padding: 100px;
+  background-color: #fff;
+  height: 100vh
+}
+
+.container input {
+  margin-top: 40px;
+  display: block
+}
+
+.datePicker-arrowTop, .datePicker-arrowBottom {
+  cursor: pointer
+}
+
+.datePicker-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  /* -webkit-transform: translate(-100%, -100%);
+  -ms-transform: translate(-100%, -100%);
+  transform: translate(-100%, -100%); */
+  font-family: inherit;
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(166, 166, 198, 0.5);
+  --datePickerSize: 16px;
+  font-size: var(--datePickerSize);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+
+.datePicker-container {
+  max-width: 311px;
+  border: 1px solid #a6a6c6;
+  border-radius: 25px;
+  width: 100%;
+  position: relative;
+  /* top: -9999px;
+  left: -9999px; */
+  z-index: 99999;
+  margin: auto;
+  background-color: #fff;
+  color: #000;
+  -webkit-box-shadow: 0px 0px 40px rgba(12, 12, 50, 0.22);
+  box-shadow: 0px 0px 40px rgba(12, 12, 50, 0.22)
+}
+
+.datePicker-container input:focus {
+  outline: 1px solid #000084
+}
+
+.datePicker-close {
+  position: absolute;
+  top: -7px;
+  right: -7px
+}
+
+.datePicker-tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-top-right-radius: 25px;
+  border-top-left-radius: 25px;
+  overflow: hidden;
+  border-bottom: 1px solid #A6A6C6
+}
+
+.datePicker-tabs div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 20px 10px;
+  background-color: #e8ecff;
+  font-size: 1.333em;
+  color: #a6a6c6
+}
+
+.datePicker-tabs div.active {
+  background-color: #fff;
+  color: #000084
+}
+
+.datePicker-tabs__content {
+  display: none
+}
+
+.datePicker-tabs__content.active {
+  display: block
+}
+
+.datePicker-content {
+  padding: 20px 8px 0px
+}
+
+.calendar-wrapper {
+  padding: 0 25px
+}
+
+.calendar-navigation {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around
+}
+
+.calendar-title, .calendar-subtitle {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  font-size: 1.333em
+}
+
+.calendar-title .calendar-month__prev, .calendar-title .calendar-month__next, .calendar-title .calendar-year__prev, .calendar-title .calendar-year__next, .calendar-subtitle .calendar-month__prev, .calendar-subtitle .calendar-month__next, .calendar-subtitle .calendar-year__prev, .calendar-subtitle .calendar-year__next {
+  margin: auto;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0 5px;
+  cursor: pointer
+}
+
+.calendar-title .calendar-month__prev, .calendar-subtitle .calendar-month__prev {
+  position: absolute;
+  top: 0px;
+  left: calc(-1em + -4px)
+}
+
+.calendar-title .calendar-month__next, .calendar-subtitle .calendar-month__next {
+  position: absolute;
+  top: 0px;
+  right: calc(-1em + -4px)
+}
+
+.calendar-title .calendar-year__prev, .calendar-subtitle .calendar-year__prev {
+  position: absolute;
+  top: 0px;
+  left: calc(-1em + -4px)
+}
+
+.calendar-title .calendar-year__next, .calendar-subtitle .calendar-year__next {
+  position: absolute;
+  top: 0px;
+  right: calc(-1em + -4px)
+}
+
+.calendar-title {
+  color: #000084;
+  width: 85px
+}
+
+.calendar-subtitle {
+  color: #a6a6c6
+}
+
+.calendar-subtitle svg path {
+  stroke: #a6a6c6
+}
+
+.calendar-weekdays {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 5px
+}
+
+.calendar-weekdays div {
+  width: 14.285%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center
+}
+
+.calendar-month {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap
+}
+
+.calendar-month .thisMonthDays span {
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  -webkit-transition: border-color 0.3s;
+  -o-transition: border-color 0.3s;
+  transition: border-color 0.3s
+}
+
+.calendar-month .thisMonthDays:hover span {
+  border-color: #000084
+}
+
+.calendar-month div {
+  width: 14.285%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 2px 0
+}
+
+.calendar-month div span {
+  width: calc(1em + 10px);
+  height: calc(1em + 10px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s
+}
+
+.calendar-month div.active span {
+  background-color: #000084;
+  border-radius: 50%;
+  color: #fff
+}
+
+.calendar-month .prev-date, .calendar-month .next-date {
+  color: #a6a6c6
+}
+
+.timePicker-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 10px 0px
+}
+
+.timePicker-container input {
+  width: 1.4em;
+  height: 1.25em;
+  font-size: 1.333em;
+  color: #000084;
+  border: none;
+  padding-left: 3px
+}
+
+.timePicker-item {
+  position: relative;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 80px
+}
+
+.timePicker-item .datePicker-arrowTop, .timePicker-item .datePicker-arrowBottom {
+  right: 0
+}
+
+.timePicker-item .datePicker-arrowTop {
+  margin-bottom: 4px;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #000084
+}
+
+.timePicker-item .datePicker-arrowBottom {
+  margin-top: 4px;
+  border: 10px solid transparent;
+  border-top: 10px solid #000084
+}
+
+.timePicker-item .timePicker-title {
+  margin-top: 4px
+}
+
+.datePicker-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 20px
+}
+
+.datePicker-buttons button {
+  cursor: pointer;
+  padding: 6px 12px 7px;
+  background-color: #000084;
+  color: #fff;
+  border: 1px solid #000084;
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s
+}
+
+.datePicker-buttons button:hover {
+  outline: none;
+  background-color: #fff;
+  color: #000084
+}
+
+.datePicker-buttons button:focus {
+  outline: none
+}
+
+.datePicker-buttons button+button {
+  margin-left: 13px
+}
+
+.date-switch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding-bottom: 10px
+}
+
+.date-switch input {
+  padding-bottom: 4px
+}
+
+.date-switch__days input {
+  width: 32px
+}
+
+.date-switch__months input {
+  width: 52px
+}
+
+.date-switch__years input {
+  width: 58px
+}
+
+.date-switch__item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 80px
+}
+
+.date-switch__item .datePicker-arrowTop {
+  margin-bottom: 4px;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #000084
+}
+
+.date-switch__item .datePicker-arrowBottom {
+  margin-top: 4px;
+  border: 10px solid transparent;
+  border-top: 10px solid #000084
+}
+
+.date-switch__item div {
+  margin-top: 4px
+}
+
+.date-switch__item input {
+  height: 1.25em;
+  border: none;
+  font-size: 1.333em;
+  text-align: center
+}
+
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0
+}
+
+input[type="number"] {
+  -moz-appearance: textfield
+}
+
+input[type="number"]:hover, input[type="number"]:focus {
+  -moz-appearance: number-input
+}
+
+input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0
+}
+.datePicker-container.time .dateSwitcher-container,
+.datePicker-container.time .calendar-navigation,
+.datePicker-container.time .calendar-weekdays,
+.datePicker-container.time .datePicker-content,
+.datePicker-container.time .dataPicker-tabs__buttons:first-child{
+  display: none;
+}
+.datePicker-container.date .timePicker-container{
+  display: none;
+}
+.datePicker-wrapper.hide {
+  /* display: none; */
+  -webkit-transform: translate(-100%, -100%);
+  -ms-transform: translate(-100%, -100%);
+  transform: translate(-100%, -100%);
+}
+
+.first-tab .dateSwitcher-container {
+  display: none;
+}
+
+.second-tab .calendar-navigation,
+.second-tab .calendar-weekdays,
+.second-tab .datePicker-content {
+  display: none;
+}
